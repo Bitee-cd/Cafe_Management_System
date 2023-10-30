@@ -21,20 +21,34 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
     @Override
     public ResponseEntity<String> signUp(Map<String, String> requestMap) {
-        log.info("Inside signup",requestMap);
-        if(validateSignUpMap(requestMap)){
-                User user = userDao.findByEmailId(requestMap.get("email"));
-                if(Objects.isNull(user)){
-                        userDao.save()
-                }else return CafeUtils.getResponseEntity("Email Already exists",HttpStatus.BAD_REQUEST);
-        }
-        else return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
-        return null;
+        log.info("Inside signup", requestMap);
+try{
+        if (validateSignUpMap(requestMap)) {
+            User user = userDao.findByEmailId(requestMap.get("email"));
+            if (Objects.isNull(user)) {
+                userDao.save(getUserFromMap(requestMap));
+                return CafeUtils.getResponseEntity("Successfully Registered", HttpStatus.CREATED);
+            } else return CafeUtils.getResponseEntity("Email Already exists", HttpStatus.BAD_REQUEST);
+        } else return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+    }
+catch (Exception e) {
+    return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG,
+            HttpStatus.INTERNAL_SERVER_ERROR);
+}
     }
     private boolean validateSignUpMap(Map<String,String> requestMap){
        return requestMap.containsKey("name") && requestMap.containsKey("contactNumber")
                 && requestMap.containsKey("email") && requestMap.containsKey("password");
     }
 
-
+    private User getUserFromMap(Map<String,String> requestMap){
+        User user = new User();
+        user.setName(requestMap.get("name"));
+        user.setContactNumber(requestMap.get("contactNumber"));
+        user.setEmail(requestMap.get("email"));
+        user.setPassword(requestMap.get("password"));
+        user.setStatus("false");
+        user.setRole("user");
+        return user;
+    }
 }
