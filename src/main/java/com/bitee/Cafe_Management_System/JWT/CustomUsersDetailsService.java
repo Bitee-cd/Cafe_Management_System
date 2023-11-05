@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class CustomerUsersDetailsService implements UserDetailsService {
+public class CustomUsersDetailsService implements UserDetailsService {
 
     @Autowired
     UserDao userDao;
@@ -22,7 +22,6 @@ public class CustomerUsersDetailsService implements UserDetailsService {
     private com.bitee.Cafe_Management_System.model.User  userDetail;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        log.info("Inside loadByUsername {}",email);
        userDetail = userDao.findByEmailId(email);
        if(!Objects.isNull(userDetail)){
            return new User(userDetail.getEmail(),userDetail.getPassword(),new ArrayList<>());

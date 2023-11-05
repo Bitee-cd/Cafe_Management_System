@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
     @Autowired
-    CustomerUsersDetailsService customerUsersDetailsService;
+    CustomUsersDetailsService customUsersDetailsService;
     @Autowired
     JWTFilter jwtFilter;
 
@@ -42,8 +42,6 @@ public class SecurityConfig {
                 .exceptionHandling(Customizer.withDefaults())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
-
         return http.build();
     }
 
@@ -56,7 +54,7 @@ public class SecurityConfig {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(customerUsersDetailsService);
+        provider.setUserDetailsService(customUsersDetailsService);
         return provider;
     }
 

@@ -20,7 +20,7 @@ public class JWTFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
-    private CustomerUsersDetailsService customerUsersDetailsService;
+    private CustomUsersDetailsService customUsersDetailsService;
 
 
     Claims claims= null;
@@ -35,14 +35,11 @@ public class JWTFilter extends OncePerRequestFilter {
                 String token = null;
                  if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
                      token = authorizationHeader.substring(7);
-                     logger.info(token);
                      userName = jwtUtil.extractUsername(token);
                      claims = jwtUtil.extractAllClaims(token);
-                     logger.info(userName);
-                     System.out.println(claims);
                  }
                  if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null){
-                     UserDetails userDetails = customerUsersDetailsService.loadUserByUsername(userName);
+                     UserDetails userDetails = customUsersDetailsService.loadUserByUsername(userName);
                      if(jwtUtil.validateToken(token,userDetails)){
                          UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                                  new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());

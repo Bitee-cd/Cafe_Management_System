@@ -1,6 +1,6 @@
 package com.bitee.Cafe_Management_System.serviceImpl;
 
-import com.bitee.Cafe_Management_System.JWT.CustomerUsersDetailsService;
+import com.bitee.Cafe_Management_System.JWT.CustomUsersDetailsService;
 import com.bitee.Cafe_Management_System.JWT.JWTFilter;
 import com.bitee.Cafe_Management_System.JWT.JwtUtil;
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JWTFilter jwtFilter;
     @Autowired
-    CustomerUsersDetailsService customerUsersDetailsService;
+    CustomUsersDetailsService customUsersDetailsService;
 
     @Autowired
     EmailUtils emailUtils;
@@ -69,11 +69,11 @@ public class UserServiceImpl implements UserService {
                 );
 
                 if (auth.isAuthenticated()) {
-                    if (customerUsersDetailsService.getUserDetail().getStatus().equalsIgnoreCase("true")) {
+                    if (customUsersDetailsService.getUserDetail().getStatus().equalsIgnoreCase("true")) {
                         log.info("gooten here");
                         String token = jwtUtil.generateToken(
-                                customerUsersDetailsService.getUserDetail().getEmail(),
-                                customerUsersDetailsService.getUserDetail().getRole()
+                                customUsersDetailsService.getUserDetail().getEmail(),
+                                customUsersDetailsService.getUserDetail().getRole()
                         );
 
                         return new ResponseEntity<String>("{\"token\":\"" + token + "\"}", HttpStatus.OK);
