@@ -1,7 +1,6 @@
-package com.bitee.Cafe_Management_System.dao;
+package com.bitee.Cafe_Management_System.User;
 
-import com.bitee.Cafe_Management_System.model.User;
-import com.bitee.Cafe_Management_System.wrapper.UserWrapper;
+
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

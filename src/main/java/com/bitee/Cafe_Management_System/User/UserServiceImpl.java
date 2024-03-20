@@ -1,15 +1,14 @@
-package com.bitee.Cafe_Management_System.serviceImpl;
+package com.bitee.Cafe_Management_System.User;
 
 import com.bitee.Cafe_Management_System.JWT.CustomUsersDetailsService;
 import com.bitee.Cafe_Management_System.JWT.JWTFilter;
 import com.bitee.Cafe_Management_System.JWT.JwtUtil;
+import com.bitee.Cafe_Management_System.Otp.Otp;
+import com.bitee.Cafe_Management_System.Otp.OtpService;
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.dao.UserDao;
-import com.bitee.Cafe_Management_System.model.User;
-import com.bitee.Cafe_Management_System.service.UserService;
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
 import com.bitee.Cafe_Management_System.utils.EmailUtils;
-import com.bitee.Cafe_Management_System.wrapper.UserWrapper;
+import com.bitee.Cafe_Management_System.User.UserWrapper;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,9 @@ public class UserServiceImpl implements UserService {
     CustomUsersDetailsService customUsersDetailsService;
 
     @Autowired
+    OtpService otpService;
+
+    @Autowired
     EmailUtils emailUtils;
 
     @Override
@@ -47,7 +49,13 @@ public class UserServiceImpl implements UserService {
             if (validateSignUpMap(requestMap)) {
                 User user = userDao.findByEmailId(requestMap.get("email"));
                 if (Objects.isNull(user)) {
-                    userDao.save(getUserFromMap(requestMap));
+                    user = getUserFromMap(requestMap); // Create user entity
+                    userDao.save(user);
+                    //generate userOtp and send an email
+                   String userOtp = otpService.generateUserOtp(user);
+                   log.info("Generated otp");
+                   emailUtils.sendOtpMail(user.getEmail(),"Cafe Management:Verify your Account",userOtp);
+                   log.info("Sent user otp from userservice");
                     return CafeUtils.getResponseEntity("Successfully Registered", HttpStatus.CREATED);
                 } else return CafeUtils.getResponseEntity("Email Already exists", HttpStatus.BAD_REQUEST);
             } else return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
@@ -75,6 +83,7 @@ public class UserServiceImpl implements UserService {
                                 customUsersDetailsService.getUserDetail().getEmail(),
                                 customUsersDetailsService.getUserDetail().getRole()
                         );
+
 
                         return new ResponseEntity<String>("{\"token\":\"" + token + "\"}", HttpStatus.OK);
                     } else {
@@ -159,6 +168,18 @@ public class UserServiceImpl implements UserService {
         }
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Override
+    public ResponseEntity<String> verifyOtp(Map<String, String> requestMap) {
+    try{
+    //TODO implement this
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+    return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 
     private void sendMailToAllAdmin(String status, String user, List<String> allAdmin) {
 

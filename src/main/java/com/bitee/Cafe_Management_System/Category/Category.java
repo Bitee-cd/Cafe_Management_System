@@ -1,4 +1,4 @@
-package com.bitee.Cafe_Management_System.model;
+package com.bitee.Cafe_Management_System.Category;
 
 import jakarta.persistence.*;
 import lombok.Data;

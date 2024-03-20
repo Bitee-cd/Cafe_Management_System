@@ -1,4 +1,4 @@
-package com.bitee.Cafe_Management_System.wrapper;
+package com.bitee.Cafe_Management_System.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

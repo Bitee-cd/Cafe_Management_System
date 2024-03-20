@@ -30,7 +30,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/user/login", "/user/signup", "/user/forgot-password")
+                        .requestMatchers("/api/v1/auth/verify-otp","/api/v1/auth/login", "/api/v1/auth/signup", "/api/v1/auth/forgot-password")
                         .permitAll()
                         .anyRequest()
                         .authenticated()

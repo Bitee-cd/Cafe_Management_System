@@ -1,6 +1,5 @@
-package com.bitee.Cafe_Management_System.service;
+package com.bitee.Cafe_Management_System.Product;
 
-import com.bitee.Cafe_Management_System.wrapper.ProductWrapper;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -2,6 +2,7 @@ package com.bitee.Cafe_Management_System.utils;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class EmailUtils {
 
     @Autowired
@@ -39,10 +41,21 @@ public class EmailUtils {
         helper.setSubject(subject);
         message.setContent(htmlMessage,"text/html");
         emailSender.send(message);
-
+        log.info("Email sent sucessfully");
 
     }
 
+    public void sendOtpMail(String to ,String subject,String otp) throws MessagingException{
+        String htmlMessage ="<p>Your otp to verify your account with us is <b><br></br>Otp: " +otp + "<br></br> </b> This code expires in 15 minutes"+"</p>";
+        MimeMessage message  = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,true);
+        helper.setFrom("caleduniya45@gmail.com");
+        helper.setSubject(subject);
+        helper.setTo(to);
+        message.setContent(htmlMessage,"text/html");
+        emailSender.send(message);
+        log.info("Email sent sucessfully");
+    }
     private String[] getCcArray(List<String> ccList){
         String[] cc = new String[ccList.size()];
         for (int i=0; i< ccList.size();i++){

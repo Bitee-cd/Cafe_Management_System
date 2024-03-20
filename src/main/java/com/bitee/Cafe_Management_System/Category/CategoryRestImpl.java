@@ -1,14 +1,11 @@
-package com.bitee.Cafe_Management_System.restImpl;
+package com.bitee.Cafe_Management_System.Category;
 
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.model.Category;
-import com.bitee.Cafe_Management_System.rest.CategoryRest;
-import com.bitee.Cafe_Management_System.service.CategoryService;
+
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -31,6 +28,11 @@ public class CategoryRestImpl implements CategoryRest {
     }
 
     @Override
+    public ResponseEntity<String> updateCategory(String id, Map<String, String> requestMap) {
+        return null;
+    }
+
+    @Override
     public ResponseEntity<List<Category>> getAllCategories(String filterValue) {
         try{
            return categoryService.getAllCategory(filterValue);
@@ -38,6 +40,16 @@ public class CategoryRestImpl implements CategoryRest {
             e.printStackTrace();
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<Category> getSingleCategory(String id) {
+        try{
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(CafeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override

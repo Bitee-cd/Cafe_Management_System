@@ -1,10 +1,7 @@
-package com.bitee.Cafe_Management_System.serviceImpl;
+package com.bitee.Cafe_Management_System.Category;
 
 import com.bitee.Cafe_Management_System.JWT.JWTFilter;
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.dao.CategoryDao;
-import com.bitee.Cafe_Management_System.model.Category;
-import com.bitee.Cafe_Management_System.service.CategoryService;
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;

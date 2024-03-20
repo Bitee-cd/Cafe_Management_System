@@ -1,10 +1,7 @@
-package com.bitee.Cafe_Management_System.restImpl;
+package com.bitee.Cafe_Management_System.Product;
 
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.rest.ProductRest;
-import com.bitee.Cafe_Management_System.service.ProductService;
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
-import com.bitee.Cafe_Management_System.wrapper.ProductWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

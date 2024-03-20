@@ -1,6 +1,6 @@
-package com.bitee.Cafe_Management_System.service;
+package com.bitee.Cafe_Management_System.User;
 
-import com.bitee.Cafe_Management_System.wrapper.UserWrapper;
+import com.bitee.Cafe_Management_System.User.UserWrapper;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -21,4 +21,7 @@ public interface UserService {
     ResponseEntity<String> changePassword(Map<String, String> requestMap);
 
     ResponseEntity<String> forgotPassword(Map<String, String> requestMap);
+
+    ResponseEntity<String> verifyOtp(Map<String,String> requestMap);
+
 }

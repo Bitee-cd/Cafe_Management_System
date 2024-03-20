@@ -1,14 +1,10 @@
-package com.bitee.Cafe_Management_System.serviceImpl;
+package com.bitee.Cafe_Management_System.Product;
 
+import com.bitee.Cafe_Management_System.Category.Category;
 import com.bitee.Cafe_Management_System.JWT.JWTFilter;
 import com.bitee.Cafe_Management_System.JWT.JwtUtil;
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.dao.ProductDao;
-import com.bitee.Cafe_Management_System.model.Category;
-import com.bitee.Cafe_Management_System.model.Product;
-import com.bitee.Cafe_Management_System.service.ProductService;
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
-import com.bitee.Cafe_Management_System.wrapper.ProductWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

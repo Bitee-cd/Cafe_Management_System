@@ -1,10 +1,9 @@
-package com.bitee.Cafe_Management_System.restImpl;
+package com.bitee.Cafe_Management_System.User;
 
+import com.bitee.Cafe_Management_System.Otp.OtpService;
 import com.bitee.Cafe_Management_System.constants.CafeConstants;
-import com.bitee.Cafe_Management_System.rest.UserRest;
-import com.bitee.Cafe_Management_System.service.UserService;
+
 import com.bitee.Cafe_Management_System.utils.CafeUtils;
-import com.bitee.Cafe_Management_System.wrapper.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,8 @@ import java.util.Map;
 
 @RestController
 public class UserRestImpl implements UserRest {
-
+    @Autowired
+    OtpService otpService;
     @Autowired
     UserService userService;
     @Override
@@ -85,6 +85,16 @@ public class UserRestImpl implements UserRest {
         try{
             return userService.forgotPassword(requestMap);
         }catch(Exception e){
+            e.printStackTrace();
+        }
+        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<String> verifyOtp(Map<String, String> requestMap) {
+        try{
+            return otpService.verifySignUpOtp(requestMap);
+        }catch(Exception e ){
             e.printStackTrace();
         }
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);

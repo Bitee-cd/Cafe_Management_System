@@ -1,6 +1,7 @@
-package com.bitee.Cafe_Management_System.model;
+package com.bitee.Cafe_Management_System.Product;
 
 
+import com.bitee.Cafe_Management_System.Category.Category;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
@@ -9,17 +10,17 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.io.Serializable;
 
 
-@NamedQuery(name="Product.getAllProduct",query = "SELECT new com.bitee.Cafe_Management_System.wrapper.ProductWrapper" +
+@NamedQuery(name="Product.getAllProduct",query = "SELECT new com.bitee.Cafe_Management_System.Product.ProductWrapper" +
         "(p" +
         ".id,p" +
         ".name,p.description,p.price,p.status,p.category.id,p.category.name ) from Product p ")
 @NamedQuery(name="Product.updateProductStatus",query = "update Product p set p.status=: status where p.id=:id ")
-@NamedQuery(name ="Product.getByCategoryId",query = "SELECT new com.bitee.Cafe_Management_System.wrapper.ProductWrapper" +
+@NamedQuery(name ="Product.getByCategoryId",query = "SELECT new com.bitee.Cafe_Management_System.Product.ProductWrapper" +
         "(p" +
         ".id,p" +
         ".name,p.description,p.price,p.status,p.category.id,p.category.name ) from Product p where p.category.id =:id" +
         " and p.status ='true'")
-@NamedQuery(name="Product.getProductById",query = "SELECT new com.bitee.Cafe_Management_System.wrapper.ProductWrapper" +
+@NamedQuery(name="Product.getProductById",query = "SELECT new com.bitee.Cafe_Management_System.Product.ProductWrapper" +
         "(p" +
         ".id,p" +
         ".name,p.description,p.price,p.status,p.category.id,p.category.name ) from Product p where p.id =:id")

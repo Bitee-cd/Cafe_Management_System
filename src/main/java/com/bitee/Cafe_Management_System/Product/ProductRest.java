@@ -1,13 +1,12 @@
-package com.bitee.Cafe_Management_System.rest;
+package com.bitee.Cafe_Management_System.Product;
 
-import com.bitee.Cafe_Management_System.wrapper.ProductWrapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/product")
+@RequestMapping("api/v1/product")
 public interface ProductRest {
     @PostMapping(path="/add")
     ResponseEntity<String> addNewProduct(@RequestBody(required = true) Map<String,String> requestMap);

@@ -1,12 +1,10 @@
-package com.bitee.Cafe_Management_System.dao;
+package com.bitee.Cafe_Management_System.Product;
 
-import com.bitee.Cafe_Management_System.model.Product;
-import com.bitee.Cafe_Management_System.wrapper.ProductWrapper;
+import com.bitee.Cafe_Management_System.Product.ProductWrapper;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

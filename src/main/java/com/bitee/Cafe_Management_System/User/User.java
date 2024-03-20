@@ -1,4 +1,4 @@
-package com.bitee.Cafe_Management_System.model;
+package com.bitee.Cafe_Management_System.User;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @NamedQuery(name = "User.findByEmailId", query = "SELECT u from User u where u.email=:email")
 
-@NamedQuery(name="User.getAllUser",query = "SELECT new com.bitee.Cafe_Management_System.wrapper.UserWrapper(u.id,u" +
+@NamedQuery(name="User.getAllUser",query = "SELECT new com.bitee.Cafe_Management_System.User.UserWrapper(u.id,u" +
         ".name,u.email,u.contactNumber,u.status) from User u where u.role='user' ")
 
 @NamedQuery(name="User.getAllAdmin",query = "SELECT u.email  from User u where u.role='admin' ")

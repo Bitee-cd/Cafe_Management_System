@@ -1,6 +1,6 @@
 package com.bitee.Cafe_Management_System.JWT;
 
-import com.bitee.Cafe_Management_System.dao.UserDao;
+import com.bitee.Cafe_Management_System.User.UserDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +19,7 @@ public class CustomUsersDetailsService implements UserDetailsService {
     @Autowired
     UserDao userDao;
 
-    private com.bitee.Cafe_Management_System.model.User  userDetail;
+    private com.bitee.Cafe_Management_System.User.User  userDetail;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
        userDetail = userDao.findByEmailId(email);
@@ -30,7 +30,7 @@ public class CustomUsersDetailsService implements UserDetailsService {
        }
     }
 
-    public com.bitee.Cafe_Management_System.model.User getUserDetail(){
+    public com.bitee.Cafe_Management_System.User.User getUserDetail(){
         return userDetail;
     }
 }
