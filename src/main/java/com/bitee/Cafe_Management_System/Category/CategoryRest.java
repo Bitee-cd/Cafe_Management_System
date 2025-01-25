@@ -11,8 +11,6 @@ public interface CategoryRest {
     @GetMapping(path = "")
     ResponseEntity<List<Category>> getAllCategories(@RequestParam(required = false) String filterValue);
 
-    @GetMapping(path="{id}")
-    ResponseEntity<Category> getSingleCategory(@PathVariable String id);
 
     @PostMapping(path = "/add")
     ResponseEntity<String> addNewCategory(@RequestBody(required = true) Map<String, String> requestMap);

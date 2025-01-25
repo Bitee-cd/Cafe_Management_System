@@ -35,4 +35,7 @@ public interface UserRest {
 
     @PostMapping(path="/verify-otp")
     public ResponseEntity<String> verifyOtp(@RequestBody Map<String,String> requestMap);
+
+    @PostMapping(path="/activate")
+    public ResponseEntity<String> activate(@RequestBody Map<String,String> requestMap);
 }

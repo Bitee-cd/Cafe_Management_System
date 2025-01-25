@@ -24,4 +24,6 @@ public interface UserService {
 
     ResponseEntity<String> verifyOtp(Map<String,String> requestMap);
 
+    ResponseEntity<String> activateUser(Map<String,String> requestMap);
+
 }
